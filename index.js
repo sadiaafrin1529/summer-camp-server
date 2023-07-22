@@ -204,7 +204,18 @@ async function run() {
 
   //selectcourse
   app.post('/addcart',async(req,res)=>{
-    
+    const data = req.body;
+    const result=await cartColleection.insertOne(data)
+    res.send(result)
+
+  })
+
+  app.get('/addcart/:email',async(req,res)=>{
+    const email= req.params.email;
+
+    const query={userEmail: email}
+    const result= await cartColleection.findOne(query)
+    res.send(result)
   })
 
 
